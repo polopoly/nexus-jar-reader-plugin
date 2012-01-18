@@ -15,20 +15,14 @@ import org.sonatype.nexus.proxy.repository.ProxyRepository;
 import org.sonatype.nexus.proxy.repository.Repository;
 import org.sonatype.nexus.proxy.repository.RequestProcessor;
 import org.sonatype.nexus.proxy.storage.UnsupportedStorageOperationException;
-import org.sonatype.plexus.appevents.ApplicationEventMulticaster;
 
-@Named("siteScanner")
+@Named("jarReader")
 public class JarReaderRequestProcessor implements RequestProcessor {
     @Inject
     private Logger logger;
 
-    @Inject
-    private ApplicationEventMulticaster applicationEventMulticaster;
-
     public boolean process(Repository repository, ResourceStoreRequest request, Action action) {
-        logger.info(request.getRequestPath());
-
-        if (request.getRequestPath().contains(JarUtil.SITE_CONTENT_PATTERN)) {
+        if (isJarContentPath(request)) {
             try {
                 ResourceStoreRequest siteRequest = JarUtil.getSiteRequest(request);
 
@@ -53,6 +47,15 @@ public class JarReaderRequestProcessor implements RequestProcessor {
         }
 
         return true;
+    }
+
+    private boolean isJarContentPath(ResourceStoreRequest request) {
+        String url = request.getRequestPath();
+        if (url.contains(JarUtil.JAR_CONTENT_PATTERN)) {
+            if (!url.endsWith(JarUtil.JAR_CONTENT_PATTERN) && !url.endsWith(JarUtil.JAR_CONTENT_PATTERN + "/"))
+                return true;
+        }
+        return false;
     }
 
     public boolean shouldProxy(ProxyRepository repository, ResourceStoreRequest request) {

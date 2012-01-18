@@ -30,6 +30,13 @@
   		<url>http://repository.sonatype.org/content/groups/forge</url>
   	</pluginRepository>
   </pluginRepositories>
+  
+  <licenses>
+    <license>
+      <name>GNU General Public License</name>
+      <url>http://www.gnu.org/licenses/gpl.html</url>
+    </license>
+  </licenses>
 
   <dependencies>
 

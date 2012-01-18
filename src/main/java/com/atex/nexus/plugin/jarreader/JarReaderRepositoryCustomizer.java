@@ -10,8 +10,8 @@ import org.sonatype.nexus.proxy.repository.RequestProcessor;
 
 public class JarReaderRepositoryCustomizer implements RepositoryCustomizer {
     @Inject
-    private @Named("siteScanner")
-    RequestProcessor siteScannerRequestProcessor;
+    private @Named("jarReader")
+    RequestProcessor jarReaderRequestProcessor;
 
     public boolean isHandledRepository(Repository repository) {
         // handle proxy reposes only
@@ -21,6 +21,6 @@ public class JarReaderRepositoryCustomizer implements RepositoryCustomizer {
     }
 
     public void configureRepository(Repository repository) throws ConfigurationException {
-        repository.getRequestProcessors().put("siteScanner", siteScannerRequestProcessor);
+        repository.getRequestProcessors().put("jarReader", jarReaderRequestProcessor);
     }
 }
