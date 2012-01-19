@@ -4,8 +4,6 @@ import javax.inject.Named;
 
 import org.codehaus.plexus.component.annotations.Requirement;
 import org.sonatype.nexus.mime.MimeUtil;
-import org.sonatype.nexus.proxy.IllegalOperationException;
-import org.sonatype.nexus.proxy.ItemNotFoundException;
 import org.sonatype.nexus.proxy.LocalStorageException;
 import org.sonatype.nexus.proxy.item.ContentGenerator;
 import org.sonatype.nexus.proxy.item.ContentLocator;
@@ -24,11 +22,10 @@ public class JarContentGenerator implements ContentGenerator {
     }
 
     public ContentLocator generateContent(Repository repository, String path, StorageFileItem item)
-            throws IllegalOperationException, ItemNotFoundException, LocalStorageException {
+            throws LocalStorageException {
         // make length unknown (since it will be known only in the moment of actual content pull)
         item.setLength(-1);
 
         return new JarContentLocator(repository, path, mimeUtil);
     }
-
 }

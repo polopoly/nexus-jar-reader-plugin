@@ -6,7 +6,7 @@ public class JarUtil {
     public static final String JAR_PATTERN = ".jar";
     public static final String JAR_CONTENT_PATTERN = JAR_PATTERN + "_";
 
-    public static ResourceStoreRequest getSiteRequest(ResourceStoreRequest request) {
+    public static ResourceStoreRequest getJarRequest(ResourceStoreRequest request) {
         int index = request.getRequestPath().indexOf(JAR_PATTERN);
         ResourceStoreRequest siteRequest = new ResourceStoreRequest(request);
         siteRequest.setRequestPath(request.getRequestPath().substring(0, index + JAR_PATTERN.length()));
