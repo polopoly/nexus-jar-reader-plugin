@@ -9,7 +9,7 @@ When you try to browse content of jar in Group Repository or Proxy Repository, i
 it will automatic download the jar from remote storage.
 
 Syntax for read content of jar.
-append underscore ( _ ) after the jar want you read.
+append exclamation mark ( ! ) after the jar want you read.
 Eg:
 Reading readme.txt in hibernate-jpa-2.0-api-1.0.1.Final.jar
-http://localhost:8080/nexus/content/groups/public/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar_/readme.txt
+http://localhost:8080/nexus/content/groups/public/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar!/readme.txt
